@@ -1,16 +1,24 @@
-package com.smart.rdv.demo.security.services;
+package com.smart.rdv.demo.security;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.smart.rdv.demo.security.jwt.AuthEntryPointJwt;
+import com.smart.rdv.demo.security.jwt.AuthTokenFilter;
+import com.smart.rdv.demo.security.services.UserDetailsServiceImpl;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.smart.rdv.demo.entity.User;
+
 
 @Configuration
 @EnableMethodSecurity
@@ -78,8 +86,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
-          auth.requestMatchers("/api/auth/**").permitAll()
-              .requestMatchers("/api/test/**").permitAll()
+          auth.requestMatchers("/**").permitAll()
+            //  .requestMatchers("/api/test/**").permitAll()
               .anyRequest().authenticated()
         );
     

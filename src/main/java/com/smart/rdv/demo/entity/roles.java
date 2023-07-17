@@ -1,6 +1,5 @@
 package com.smart.rdv.demo.entity;
 
-import com.smart.rdv.demo.Enum.ERole;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,12 +8,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 public class roles {
     @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Enumerated(EnumType.STRING)

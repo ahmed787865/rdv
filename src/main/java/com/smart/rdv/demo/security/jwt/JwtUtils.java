@@ -37,6 +37,8 @@ public class JwtUtils  {
         .signWith(key(), SignatureAlgorithm.HS256)
         .compact();
   }
+
+  ahmed787865
   
   private Key key() {
     return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));

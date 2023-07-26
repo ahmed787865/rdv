@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smart.rdv.demo.Repository.RdvRepository;
-import com.smart.rdv.demo.entity.RendezVous;
 
 import jakarta.transaction.Transactional;
 
